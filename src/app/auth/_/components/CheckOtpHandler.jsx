@@ -1,15 +1,17 @@
-import TextField from "@/common/TextField";
 import React from "react";
+import { CiEdit } from "react-icons/ci";
+import { HiArrowNarrowRight } from "react-icons/hi";
 import OTPInput from "react-otp-input";
 
 function CheckOtpForm({
-  phoneNumber,
   otp,
   onBack,
   time,
   onResendOtp,
-  otp,
-  isChekingOtp,
+  setOtp,
+  otpResponse,
+  isCheckingOtp,
+  onSubmit,
 }) {
   return (
     <div>
@@ -49,8 +51,8 @@ function CheckOtpForm({
           renderInput={(props) => <input type="number" {...props} />}
         />
         <div>
-          {isChekingOtp ? (
-            // <Loading />
+          {isCheckingOtp ? (
+            // <Lcoading />
             "loading..."
           ) : (
             <button type="submit" className="btn btn--primary w-full">

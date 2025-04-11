@@ -1,7 +1,8 @@
+import Loading from "@/common/Loading";
 import TextField from "@/common/TextField";
 import React from "react";
 
-function SendOptForm({ onChange, phoneNumber, onSubmit }) {
+function SendOptForm({ onChange, isPending, phoneNumber, onSubmit }) {
   return (
     <div className="p-3 rounded-xl">
       <form className="space-y-10" onSubmit={onSubmit}>
@@ -20,9 +21,13 @@ function SendOptForm({ onChange, phoneNumber, onSubmit }) {
           name="phoneNumber"
         />
         <div>
-          <button type="submit" className="btn btn--primary font-bold w-full">
-            ارسال کد تایید
-          </button>
+          {isPending ? (
+            <Loading />
+          ) : (
+            <button type="submit" className="btn btn--primary font-bold w-full">
+              ارسال کد تایید
+            </button>
+          )}
         </div>
       </form>
     </div>

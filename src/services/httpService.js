@@ -16,14 +16,15 @@ app.interceptors.response.use(
     if (err.response.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
       try {
-        const { data } = await app.get(`/user/refresh-token`, {
+        const { data } = await axios.get(`/user/refresh-token`, {
           withCredentials: true,
         });
         if (data) app(originalConfig);
       } catch (error) {
-        new Promise.reject(error);
+        return Promise.reject(error);
       }
     }
+    return Promise.reject(err);
   }
 );
 
@@ -33,6 +34,5 @@ const http = {
   post: app.post,
   delete: app.delete,
   patch: app.patch,
-  delete: app.delete,
 };
 export default http;

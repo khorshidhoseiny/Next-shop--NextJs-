@@ -29,6 +29,16 @@ function Header() {
             </Link>
           </li>
           <li>
+            <Link className="block py-2" href="/profile">
+              پروفایل کاربر
+            </Link>
+          </li>
+          <li>
+            <Link className="block py-2" href="/admin">
+              پنل ادمین
+            </Link>
+          </li>
+          <li>
             <Link className="block py-2 relative" href="/products">
               <FaShoppingCart className="w-5 h-5 " />
 

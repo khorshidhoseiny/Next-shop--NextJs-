@@ -1,12 +1,10 @@
 import vazirFont from "@/constants/localFonts";
-import "./globals.css";
-import Header from "./Header";
+import Providers from "@/pages/Providers";
 import { Toaster } from "react-hot-toast";
-import Providers from "./Providers";
-
+import "../../globals.css";
 export const metadata = {
-  title: " Next Shop Panel",
-  description: "Next.js Course Fronthooks Course",
+  title: "پروفایل ادمین",
+  description: "پنل مختص ادمین برای رصد بهتر برنامه",
 };
 
 export default function RootLayout({ children }) {
@@ -18,7 +16,7 @@ export default function RootLayout({ children }) {
       >
         <Providers>
           <Toaster />
-          <Header />
+
           <div className="container xl:max-w-screen-xl"> {children} </div>
         </Providers>
       </body>

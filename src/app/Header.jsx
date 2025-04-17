@@ -39,7 +39,7 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link className="block py-2 relative" href="/products">
+            <Link className="block py-2 relative" href="/cart">
               <FaShoppingCart className="w-5 h-5 " />
 
               <span className=" bg-green-500 flex justify-center items-center text-white text-xs absolute top-0 left-4 font-bold  w-4 h-4 rounded-full  ">

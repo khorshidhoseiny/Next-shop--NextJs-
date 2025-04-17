@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import CheckOtpForm from "./_/components/CheckOtpHandler";
-import { data } from "autoprefixer";
 
 const RESEND_TIME = 90;
 function AuthPage() {
@@ -37,7 +36,7 @@ function AuthPage() {
       if (user.isActive) {
         router.push("/profile");
       } else {
-        router.push("/complete-profile");
+        router.push("/auth/complete-profile");
       }
     } catch (error) {
       toast.error(error?.response?.data?.message);

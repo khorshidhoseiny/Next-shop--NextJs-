@@ -19,11 +19,11 @@ export default function RootLayout({ children }) {
         <Providers>
           <Header />
           <Toaster />
-          <div className="grid grid-cols-4 h-screen bg-white">
-            <div className="col-span-1 bg-gray-300 p-4 overflow-y-scroll">
+          <div className="grid grid-cols-5 h-screen bg-white">
+            <div className="col-span-1 bg-gray-100 p-4 overflow-y-scroll">
               <SideBar />
             </div>
-            <div className="col-span-3 overflow-y-scroll p-2 xl:max-w-screen-xl">
+            <div className="col-span-4 overflow-y-scroll p-2 xl:max-w-screen-xl">
               {children}
             </div>
           </div>

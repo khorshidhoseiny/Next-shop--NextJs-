@@ -54,10 +54,6 @@ export const userListTableHeads = [
     id: 6,
     label: "تاریخ پیوستن",
   },
-  {
-    id: 7,
-    label: "مشاهده",
-  },
 ];
 
 export const productListTableTHeads = [
@@ -158,6 +154,96 @@ export const adminPaymentListTableTHeads = [
   {
     id: 9,
     label: "مشاهده",
+  },
+];
+export const adminPaymentDetailHeads = [
+  {
+    id: 1,
+    label: "شماره فاکتور",
+  },
+  {
+    id: 2,
+    label: "متد پرداخت",
+  },
+  {
+    id: 3,
+    label: "توضیحات",
+  },
+  {
+    id: 4,
+    label: "مقدار",
+  },
+  {
+    id: 5,
+    label: "تاریخ سفارش",
+  },
+  {
+    id: 6,
+    label: "تاریخ بروزرسانی",
+  },
+  {
+    id: 7,
+    label: "وضعیت",
+  },
+  {
+    id: 8,
+    label: "پرداخت شده",
+  },
+];
+
+export const adminPaymentDetail_User_Heads = [
+  {
+    id: 1,
+    label: "آواتار",
+  },
+  {
+    id: 2,
+    label: "نام",
+  },
+
+  {
+    id: 3,
+    label: "شماره موبایل",
+  },
+
+  {
+    id: 4,
+    label: "ایمیل",
+  },
+  {
+    id: 5,
+    label: "تاریخ سفارش",
+  },
+];
+export const adminPaymentDetail_Cart_Heads = [
+  {
+    id: 1,
+    label: "نام محصول",
+  },
+  {
+    id: 2,
+    label: "جمع کل",
+  },
+  {
+    id: 3,
+    label: "تخفیف",
+  },
+  {
+    id: 4,
+    label: "مبلغ قابل پراخت",
+  },
+  {
+    id: 5,
+    label: "اسلاگ",
+  },
+
+  {
+    id: 6,
+    label: "تعداد",
+  },
+  {
+    id: 7,
+    label: "کد تخفیف",
   },
 ];
 

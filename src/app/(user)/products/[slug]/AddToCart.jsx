@@ -47,13 +47,12 @@ function AddToCart({ product }) {
               </div>
             </div>
           </div>
-          <div className="flex border-l border-gray-200">
-            <button
-              onClick={() => <Link href={"/cart"} />}
-              className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              ادامه سفارش
-            </button>
+          <div className="flex border-l justify-center items-center border-gray-200">
+            <Link href={"/cart"}>
+              <button className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                رفتن به سبد خرید
+              </button>
+            </Link>
           </div>
         </div>
       ));
@@ -64,24 +63,23 @@ function AddToCart({ product }) {
   };
   const isInCart = (user, product) => {
     if (!user) return false;
-    return user.cart?.products.some((p) => p.productId === product._id);
+    return user?.cart?.products.some((p) => p.productId === product._id);
   };
-  console.log(user.cart?.products.some((p) => p.productId === product._id));
 
   return (
     <div>
       <button
         onClick={addToCardHandler}
-        className={`btn ${
+        className={`btn text-sm rounded-md  lg:rounded-lg lg:text-base ${
           isInCart(user, product) ? "btn--secondary btn" : "btn--primary"
         }`}
       >
         {isPending ? (
           <Loading />
         ) : (
-          <p>
+          <p className="">
             {isInCart(user, product)
-              ? "به سبد خرید اضافه شد"
+              ? " به سبد خرید اضافه شد "
               : "اضافه به سبد خرید"}
           </p>
         )}

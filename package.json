@@ -19,8 +19,9 @@
     "react-hot-toast": "^2.5.2",
     "react-icons": "^4.8.0",
     "react-loader-spinner": "^6.1.6",
-    "react-multi-date-picker": "^4.0.0",
+    "react-multi-date-picker": "^4.5.2",
     "react-otp-input": "^3.1.1",
+    "react-persian-datepicker": "^3.0.2",
     "react-select": "^5.7.3",
     "react-tag-input-component": "^2.0.2"
   },

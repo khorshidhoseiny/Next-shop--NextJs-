@@ -5,19 +5,28 @@ import CategorySideBar from "./CategorySideBar";
 import queryString from "query-string";
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
 import Link from "next/link";
+import AddToCart from "./[slug]/AddToCart";
+import LikeProducts from "./LikeProducts";
 
 export const dynamic = "force-dynamic";
-
+import { cookies } from "next/headers";
+import { toStrCookies } from "@/utils/toStringCookies";
 async function ProductsPage(params) {
   const searchParams = await params.searchParams;
+
   // parallel Data fetching
-  const productsPromise = getProducts(queryString.stringify(searchParams));
+  const cookieStore = cookies();
+  const strCookies = toStrCookies(cookieStore);
+
+  const productsPromise = getProducts(
+    queryString.stringify(searchParams),
+    strCookies
+  );
   const categoryPromise = getAllCategories();
   const [{ products }, { categories }] = await Promise.all([
     productsPromise,
     categoryPromise,
   ]);
-  console.log(products, categories, "products & categories");
 
   return (
     <div>
@@ -25,14 +34,14 @@ async function ProductsPage(params) {
       <div className="grid grid-cols-4 ">
         <CategorySideBar categories={categories} />
         <div className="col-span-3">
-          <ul className="grid grid-cols-3 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {products.map((product) => {
               return (
                 <div
-                  className=" space-y-4 border rounded-xl shadow-md p-4"
+                  className="space-y-4 border rounded-xl shadow-md p-4"
                   key={product._id}
                 >
-                  <h2 className=" font-semibold  gap-4">{product.title}</h2>
+                  <h2 className="font-semibold  gap-4">{product.title}</h2>
                   <div className="mb-4">
                     <span>تاریخ ساختن: </span>
                     <span className="font-bold">
@@ -45,6 +54,8 @@ async function ProductsPage(params) {
                   >
                     مشاهده محصول
                   </Link>
+                  <LikeProducts product={product} />
+                  <AddToCart product={product} key={product._id} />
                 </div>
               );
             })}

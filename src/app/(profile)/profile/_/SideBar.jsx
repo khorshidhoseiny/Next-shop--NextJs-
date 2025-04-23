@@ -14,7 +14,10 @@ function SideBar() {
         <Link href={"/"}> خانه</Link>
       </li>
       <li>
-        <Link href={"/profile/me"}> اطلاعات کاربری</Link>
+        <Link href={"/profile/me"}> اطلاعات حساب کاربری</Link>
+      </li>
+      <li>
+        <Link href={"/profile/payment"}> سفارشات شما</Link>
       </li>
       <li>
         <button onClick={logoutHandler}>خروج از حساب کاربری</button>

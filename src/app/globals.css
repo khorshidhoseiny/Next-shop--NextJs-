@@ -38,13 +38,19 @@
     @apply w-full py-3 px-4 rounded-xl bg-gray-100 text-secondary-900 border border-gray-100 outline-none duration-200 transition-all ease-in-out hover:border-primary-300 focus:outline-none focus:border-primary-300 focus:shadow-input-focus focus:bg-white;
   }
   .btn {
-    @apply px-2 py-1 font-bold rounded-2xl transition-all duration-300;
+    @apply px-3 py-3 rounded-xl transition-all duration-300;
   }
   .btn--primary {
     @apply px-4 py-3 bg-primary-900 text-white hover:bg-primary-800 shadow-lg shadow-primary-300;
   }
   .btn--secondary {
     @apply px-4 py-3 bg-secondary-200 text-white  shadow-lg;
+  }
+  .btn--outline {
+    @apply border border-secondary-300 text-secondary-400;
+  }
+  .btn--danger {
+    @apply border border-rose-700 text-rose-700;
   }
   .table__th {
     @apply border-b-2 border-b-gray-500 font-medium p-3 pr-8 pb-3 text-right;

@@ -5,14 +5,38 @@ import {
 } from "@/utils/toPersianNumbers";
 import React from "react";
 import { HiMinus, HiOutlineTrash, HiPlus } from "react-icons/hi";
+import { useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 function cartDetail({ cartItem }) {
+  const queryClient = useQueryClient();
   const {
     data,
     isPending,
-    mutateAsync: mutateDecrementInCart,
+    mutateAsync: mutateDecFromCart,
   } = useDecrementCart();
-  const { mutateAsync: mutateAddCart } = useAddToCart();
+  const { mutateAsync } = useAddToCart();
+
+  const addToCardHandler = async () => {
+    try {
+      const { message } = await mutateAsync(cartItem._id);
+      queryClient.invalidateQueries({ queryKey: ["get-user"] });
+      toast.success(message);
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  const decrementCartHandler = async () => {
+    try {
+      const { message } = await mutateDecFromCart(cartItem._id);
+      queryClient.invalidateQueries({ queryKey: ["get-user"] });
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
 
   return (
     <div
@@ -55,9 +79,12 @@ function cartDetail({ cartItem }) {
 
         <div className="flex gap-x-2">
           <button className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 transition">
-            <HiPlus className="w-4 h-4" />
+            <HiPlus onClick={addToCardHandler} className="w-4 h-4" />
           </button>
-          <button className="border rounded-full p-2 hover:bg-gray-100 transition">
+          <button
+            onClick={() => decrementCartHandler(cartItem._id)}
+            className="border rounded-full p-2 hover:bg-gray-100 transition"
+          >
             {cartItem.quantity > 1 ? (
               <HiMinus className="w-4 h-4 text-gray-600" />
             ) : (

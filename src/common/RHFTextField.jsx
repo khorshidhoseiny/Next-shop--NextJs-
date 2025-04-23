@@ -5,6 +5,7 @@ function RHFTextField({
   validationSchema = {},
   type = "text",
   required,
+  visible,
   errors,
 }) {
   return (
@@ -17,6 +18,7 @@ function RHFTextField({
         id={name}
         className="textField__input"
         type={type}
+        disabled={visible}
         autoComplete="off"
       />
       {errors && errors[name] && (

@@ -1,3 +1,4 @@
+"use client";
 import RadioInput from "@/common/RadioInput";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";

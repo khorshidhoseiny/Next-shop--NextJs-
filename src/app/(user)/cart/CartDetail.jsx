@@ -41,11 +41,13 @@ function cartDetail({ cartItem }) {
   return (
     <div
       key={cartItem._id}
-      className="border rounded-2xl p-4 flex flex-col md:flex-row justify-between shadow-md mb-4"
+      className="border rounded-2xl p-4 flex flex-col  justify-between shadow-md mb-4"
     >
-      <span className="flex-1 font-bold text-lg mb-2 md:mb-0">
-        {cartItem.title}
-      </span>
+      <div className="whitespace-nowrap truncate">
+        <span className="flex-1 text-sm font-semibold  mb-2 md:mb-0">
+          {cartItem.title}
+        </span>
+      </div>
 
       <div className="flex items-center justify-between gap-4 flex-1 flex-wrap md:flex-nowrap">
         <div>
@@ -60,6 +62,7 @@ function cartDetail({ cartItem }) {
             >
               {toPersianNumbersWithComma(cartItem.price)}
             </span>
+            <span className="text-[9px]">تومان</span>
           </p>
           {!!cartItem.discount && (
             <div className="flex items-center gap-x-2 mt-2">

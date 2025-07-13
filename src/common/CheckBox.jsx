@@ -10,7 +10,7 @@ function CheckBox({ id, name, value, onChange, checked, label }) {
         onChange={onChange}
         className="cursor-pointer  rounded-[5px] border-none bg-secondary-100/80 w-4 h-4 checked:text-primary-900"
       />
-      <label htmlFor={id} className="cursor-pointer">
+      <label htmlFor={id} className="cursor-pointer text-sm">
         {label}
       </label>
     </div>

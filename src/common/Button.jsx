@@ -8,12 +8,14 @@ const btnType = {
 function Button({
   children,
   onClick,
+  type,
   variant = "primary",
   className,
   ...rest
 }) {
   return (
     <button
+      type={type}
       onClick={onClick}
       className={`btn ${btnType[variant]} ${className}`}
       {...rest}

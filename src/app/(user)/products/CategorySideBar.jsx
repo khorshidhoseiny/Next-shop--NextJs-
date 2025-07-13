@@ -1,7 +1,4 @@
 "use client";
-
-import { useRouter } from "next/navigation";
-import React, { useCallback, useState } from "react";
 import ProductsFilter from "./ProductsFilter";
 import ProductsSort from "./ProductsSort";
 

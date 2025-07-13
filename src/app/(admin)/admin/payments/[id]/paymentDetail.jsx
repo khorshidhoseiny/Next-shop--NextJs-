@@ -21,13 +21,13 @@ function PaymentDetail({ payment }) {
   return (
     <div className="space-y-4">
       {/* payment Detail */}
-      <h1 className="text-lg font font-semibold text-secondary-700">
-        جزئیات سفارش
+      <h1 className="text-lg mt-10 font font-semibold  text-secondary-700">
+        جزئیات پرداخت
       </h1>
-      <div className="shadow-sm flex justify-center  overflow-auto p-3 ">
-        <table className="border-collapse shadow-md rounded-xl table-auto min-w-[800px] text-sm">
+      <div className="shadow-sm flex justify-center  overflow-scroll p-3 ">
+        <table className="border-collapse shadow-md rounded-xl table-auto min-w-[800px] w-full text-sm">
           <thead>
-            <tr>
+            <tr className="overflow-scroll">
               {adminPaymentDetailHeads.map((item) => {
                 return (
                   <th
@@ -41,39 +41,41 @@ function PaymentDetail({ payment }) {
             </tr>
           </thead>
           <tbody>
-            <td className="table__td  whitespace-nowrap truncate">
-              {payment.invoiceNumber}
-            </td>
-            <td className="table__td   whitespace-nowrap truncate">
-              {payment.paymentMethod}
-            </td>
-            <td className="table__td max-w-[280px]  whitespace-nowrap truncate">
-              {payment.description}
-            </td>
-            <td className="table__td  whitespace-nowrap truncate">
-              {toPersianNumbers(payment.amount)}
-            </td>
-            <td className="table__td  whitespace-nowrap truncate">
-              {toLocalDateStringShort(payment.createdAt)}
-            </td>
-            <td className="table__td  whitespace-nowrap truncate">
-              {toLocalDateStringShort(payment.updatedAt)}
-            </td>
+            <tr>
+              <td className="table__td  whitespace-nowrap truncate">
+                {payment.invoiceNumber}
+              </td>
+              <td className="table__td   whitespace-nowrap truncate">
+                {payment.paymentMethod}
+              </td>
+              <td className="table__td max-w-[280px]  whitespace-nowrap truncate">
+                {payment.description}
+              </td>
+              <td className="table__td  whitespace-nowrap truncate">
+                {toPersianNumbers(payment.amount)}
+              </td>
+              <td className="table__td  whitespace-nowrap truncate">
+                {toLocalDateStringShort(payment.createdAt)}
+              </td>
+              <td className="table__td  whitespace-nowrap truncate">
+                {toLocalDateStringShort(payment.updatedAt)}
+              </td>
 
-            <td className="table__td">
-              {payment.status === "COMPLETED" ? (
-                <span className="badge badge--success">موفق</span>
-              ) : (
-                <span className="badge badge--error">ناموفق</span>
-              )}
-            </td>
-            <td className="table__td flex justify-center whitespace-nowrap truncate">
-              {payment.isPaid ? (
-                <FaCheck className="w-4 h-4 text-green-600" />
-              ) : (
-                <RiCoreosFill className="w-4 h-4 text-red-600" />
-              )}
-            </td>
+              <td className="table__td">
+                {payment.status === "COMPLETED" ? (
+                  <span className="badge badge--success">موفق</span>
+                ) : (
+                  <span className="badge badge--error">ناموفق</span>
+                )}
+              </td>
+              <td className="table__td flex justify-center whitespace-nowrap truncate">
+                {payment.isPaid ? (
+                  <FaCheck className="w-4 h-4 text-green-600" />
+                ) : (
+                  <RiCoreosFill className="w-4 h-4 text-red-600" />
+                )}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -81,8 +83,8 @@ function PaymentDetail({ payment }) {
       <h1 className="text-lg font font-semibold  text-secondary-700">
         جزئیات کاربر
       </h1>
-      <div className="shadow-sm flex justify-center p-3 relative overflow-auto ">
-        <table className="border-collapse mt-5 rounded-xl table-auto min-w-[800px] text-sm">
+      <div className="shadow-sm flex justify-center p-3  overflow-auto ">
+        <table className="border-collapse w-full mt-5 rounded-xl table-auto min-w-[800px] text-sm">
           <thead>
             <tr>
               {adminPaymentDetail_User_Heads.map((item) => {
@@ -98,28 +100,30 @@ function PaymentDetail({ payment }) {
             </tr>
           </thead>
           <tbody>
-            <td className="table__td">
-              <Image
-                alt={"user-image"}
-                src={payment.avatarUrl || "/images/avatar.png"}
-                width={30}
-                height={30}
-                className=""
-              />
-            </td>
-            <td className="table__td">
-              <span className="font-semibold">{payment.user.name}</span>
-            </td>
-            <td className="table__td">
-              <span>{toPersianNumbers(payment.user.phoneNumber)}</span>
-            </td>
-            <td className="table__td">
-              <span>{payment.user.email}</span>
-            </td>
+            <tr>
+              <td className="table__td">
+                <Image
+                  alt={"user-image"}
+                  src={payment.avatarUrl || "/images/avatar.png"}
+                  width={30}
+                  height={30}
+                  className=""
+                />
+              </td>
+              <td className="table__td">
+                <span className="font-semibold">{payment.user.name}</span>
+              </td>
+              <td className="table__td">
+                <span>{toPersianNumbers(payment.user.phoneNumber)}</span>
+              </td>
+              <td className="table__td">
+                <span>{payment.user.email}</span>
+              </td>
 
-            <td className="table__td">
-              {toLocalDateString(payment.createdAt)}
-            </td>
+              <td className="table__td">
+                {toLocalDateString(payment.createdAt)}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -127,14 +131,14 @@ function PaymentDetail({ payment }) {
       <h1 className="text-lg font font-semibold text-secondary-700">
         جزئیات سبد خرید
       </h1>
-      <div className="shadow-sm flex justify-center p-3 relative overflow-auto ">
-        <table className="border-collapse mt-5 rounded-xl table-auto min-w-[800px] text-sm">
+      <div className="shadow-sm flex  justify-center p-3  overflow-auto ">
+        <table className="border-collapse w-full mt-5 rounded-xl table-auto min-w-[800px]  text-sm">
           <thead>
             <tr>
               {adminPaymentDetail_Cart_Heads.map((item) => {
                 return (
                   <th
-                    className="whitespace-nowrap bg-secondary-100/50 table__th"
+                    className="whitespace-nowrap text-center bg-secondary-100/50 table__th"
                     key={item.id}
                   >
                     {item.label}

@@ -16,7 +16,7 @@ function RHFTextField({
       <input
         {...register(name, validationSchema)}
         id={name}
-        className="textField__input"
+        className="textField__input bg-white/95"
         type={type}
         disabled={visible}
         autoComplete="off"

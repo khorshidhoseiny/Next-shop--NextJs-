@@ -1,16 +1,31 @@
 "use client";
 
+import RHFTextField from "@/common/RHFTextField";
 import ProductForm from "@/components/ProductForm";
 import { useCategories } from "@/hooks/usecategories";
 import { useAddProduct } from "@/hooks/useProducts";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Select from "react-select";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import FileInput from "@/common/FileInput";
+import Image from "next/image";
+import { HiXMark } from "react-icons/hi2";
+import ButtonIcon from "../../../../../ui/ButtonIcon";
+import Loading from "@/common/Loading";
+import { TagsInput } from "react-tag-input-component";
+import Button from "@/common/Button";
+import { RiArrowGoBackLine } from "react-icons/ri";
+import useMoveBack from "@/hooks/useMoveBack";
 
 function addProductPage() {
+  const back = useMoveBack();
   const { isLoading, mutateAsync } = useAddProduct();
   const { data } = useCategories();
   const { categories } = data || {};
+  const router = useRouter();
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -19,15 +34,20 @@ function addProductPage() {
     price: "",
     offPrice: "",
     discount: "",
-    countInStock: "",
     imageLink: "",
+    countInStock: "",
   });
-  const router = useRouter();
+  const [coverImageUrl, setCoverImageUrl] = useState(null);
   const [tags, setTags] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
@@ -47,7 +67,12 @@ function addProductPage() {
 
   return (
     <div className="mb-10">
-      <h1 className="mb-4 font-bold text-xl">اضافه کردن محصول</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="title ">اضافه کردن محصول</h1>
+        <Button className={"flex gap-x-3"} onClick={back}>
+          بازگشت <RiArrowGoBackLine className="w-4 h-4 text-white" />
+        </Button>
+      </div>
       <ProductForm
         onSubmit={handleSubmit}
         categories={categories}

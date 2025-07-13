@@ -1,17 +1,29 @@
 import InfoRow from "@/common/infoRow";
-import { toLocalDateString } from "@/utils/toLocalDate";
+import { toLocalDateStringShort } from "@/utils/toLocalDate";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 import Image from "next/image";
-import React from "react";
 
 function ProductDetail({ product }) {
   return (
-    <div className="p-3 flex rounded-xl mt-4 shadow-md border border-secondary-50 gap-y-3  justify-center flex-col">
-      <div className="flex p-4 justify-between rounded-xl">
-        <div className="space-y-4">
-          <InfoRow label={"نام محصول"} value={product.title} />
-          <InfoRow label={" توضیحات"} value={product.description} />
-          <InfoRow label={"دسته بندی"} value={product.category} />
+    <div className="p-3 flex rounded-xl mt-4 overflow-hidden shadow-md border border-secondary-50 gap-y-3 bg-white  justify-center flex-col">
+      <div className="flex p-4 flex-col md:flex-row justify-between rounded-xl">
+        <div className="space-y-4 flex-1">
+          <InfoRow
+            label="عنوان"
+            value={product.title}
+            className="font-semibold"
+          />
+          <div className="flex flex-col">
+            <span className="font-semibold text-secondary-700 ">توضیحات:</span>
+            <p className="w-2/3 text-secondary-700 text-sm">
+              {product.description}
+            </p>
+          </div>
+          <InfoRow
+            label={"دسته بندی"}
+            key={product.category._id}
+            value={product.category.title}
+          />
           <InfoRow label={"اسلاگ"} value={product.slug} />
           <InfoRow label={"برند"} value={product.brand} />
           <InfoRow
@@ -20,13 +32,14 @@ function ProductDetail({ product }) {
             value={product.tags.map((tag) => tag)}
           />
         </div>
-        <Image
-          alt={"product-image"}
-          src={"/images/no-image.jpg"}
-          width={100}
-          height={100}
-          className="rounded-md object-cover "
-        />
+        <div className="aspect-video flex-1 overflow-hidden rounded-lg relative">
+          <Image
+            alt="imageLink"
+            fill
+            src={`/images/products/${product.slug}.webp`}
+            className="object-center object-contain"
+          />
+        </div>
       </div>
       <div className="flex p-4 gap-x-4 r border-t border-secondary-100 justify-between  ">
         <InfoRow
@@ -34,7 +47,7 @@ function ProductDetail({ product }) {
           value={toPersianNumbersWithComma(product.price)}
         />
         <InfoRow
-          className={"  "}
+          className={""}
           label={" تخفیف"}
           value={toPersianNumbersWithComma(product.discount)}
         />
@@ -64,16 +77,16 @@ function ProductDetail({ product }) {
           value={toPersianNumbersWithComma(product.likes.length)}
         />
       </div>
-      <div className="flex p-4 border-t border-secondary-100 justify-between rounded-xl">
+      <div className="flex p-4 gap-x-5 truncate  border-t border-secondary-100 justify-between rounded-xl">
         <InfoRow
           className={" "}
           label={"تاریخ ایجاد"}
-          value={toLocalDateString(product.createdAt)}
+          value={toLocalDateStringShort(product.createdAt)}
         />
         <InfoRow
           className=""
           label={"تاریخ بروزرسانی"}
-          value={toLocalDateString(product.updatedAt)}
+          value={toLocalDateStringShort(product.updatedAt)}
         />
       </div>
     </div>

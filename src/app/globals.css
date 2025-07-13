@@ -35,10 +35,13 @@
 
 @layer components {
   .textField__input {
-    @apply w-full py-3 px-4 rounded-xl bg-gray-100 text-secondary-900 border border-gray-100 outline-none duration-200 transition-all ease-in-out hover:border-primary-300 focus:outline-none focus:border-primary-300 focus:shadow-input-focus focus:bg-white;
+    @apply w-full py-3 px-4 rounded-xl  text-secondary-900 border border-gray-100 outline-none duration-200 transition-all ease-in-out hover:border-primary-300 focus:outline-none focus:border-primary-300 focus:shadow-input-focus focus:bg-white;
   }
   .btn {
     @apply px-3 py-3 rounded-xl transition-all duration-300;
+  }
+  .title {
+    @apply font-black text-secondary-700 text-2xl;
   }
   .btn--primary {
     @apply px-4 py-3 bg-primary-900 text-white hover:bg-primary-800 shadow-lg shadow-primary-300;
@@ -72,6 +75,9 @@
   }
   .badge--error {
     @apply bg-rose-600 text-white;
+  }
+  .category-item {
+    @apply flex flex-col items-center space-y-2;
   }
 }
 

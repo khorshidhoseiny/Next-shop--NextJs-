@@ -23,8 +23,8 @@ function CouponsTable({ coupons }) {
   };
 
   return (
-    <div className="shadow-sm overflow-auto my-8">
-      <table className="border-collapse table-auto min-w-[800px] text-sm">
+    <div className="shadow-sm overflow-auto mt-8">
+      <table className="border-collapse table-auto w-full min-w-[800px] text-sm">
         <thead>
           <tr>
             {couponListTableTHeads.map((item) => {
@@ -39,7 +39,7 @@ function CouponsTable({ coupons }) {
             })}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-secondary-100/30">
           {coupons.map((coupon, index) => {
             return (
               <tr className="" key={coupon._id}>
@@ -49,12 +49,16 @@ function CouponsTable({ coupons }) {
                   <span className="badge badge--primary">{coupon.type}</span>
                 </td>
                 <td className="table__td ">{coupon.amount}</td>
-                <td className="table__td space-y-2 flex flex-col items-start">
-                  {coupon.productIds.map((p) => {
-                    return (
-                      <span className="badge badge--secondary">{p.title}</span>
-                    );
-                  })}
+                <td className="table__td ">
+                  <div className="space-y-2 flex flex-col items-start">
+                    {coupon.productIds.map((p) => {
+                      return (
+                        <span key={p._id} className="badge badge--secondary">
+                          {p.title}
+                        </span>
+                      );
+                    })}
+                  </div>
                 </td>
                 <td className="table__td">{coupon.usageCount}</td>
                 <td className="table__td">{coupon.usageLimit}</td>

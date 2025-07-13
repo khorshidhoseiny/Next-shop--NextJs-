@@ -7,10 +7,10 @@ import { toLocalDateStringShort } from "@/utils/toLocalDate";
 import Link from "next/link";
 import AddToCart from "./[slug]/AddToCart";
 import LikeProducts from "./LikeProducts";
-
 export const dynamic = "force-dynamic";
 import { cookies } from "next/headers";
 import { toStrCookies } from "@/utils/toStringCookies";
+import Image from "next/image";
 async function ProductsPage(params) {
   const searchParams = await params.searchParams;
 
@@ -31,17 +31,28 @@ async function ProductsPage(params) {
   return (
     <div>
       <h1 className="text-xl font-bold mb-6">صفحه محصولات</h1>
+
       <div className="grid grid-cols-4 ">
         <CategorySideBar categories={categories} />
         <div className="col-span-3">
-          <ul className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-4">
             {products.map((product) => {
               return (
                 <div
                   className="space-y-4 border rounded-xl shadow-md p-4"
                   key={product._id}
                 >
-                  <h2 className="font-semibold  gap-4">{product.title}</h2>
+                  <div className="aspect-video overflow-hidden rounded-lg relative">
+                    <Image
+                      alt="imageLink"
+                      fill
+                      src={`/images/products/${product.slug}.webp`}
+                      className="object-center object-contain"
+                    />
+                  </div>
+                  <h2 className="font-semibold text-sm gap-4">
+                    {product.title}
+                  </h2>
                   <div className="mb-4">
                     <span>تاریخ ساختن: </span>
                     <span className="font-bold">

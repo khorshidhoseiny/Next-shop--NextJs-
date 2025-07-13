@@ -1,7 +1,5 @@
 "use client";
 import Loading from "@/common/Loading";
-import React from "react";
-// import UsersTable from "./usersTable";
 import { useGetProducts } from "@/hooks/useProducts";
 import ProductsTable from "./ProductsTable";
 import Link from "next/link";
@@ -16,7 +14,7 @@ function productsPage() {
   return (
     <div>
       <div className="mb-5 flex items-center justify-between">
-        <h1 className="text-xl font-bold mb-5">محصولات</h1>
+        <h1 className="title">محصولات</h1>
         <Link
           href="/admin/products/add"
           className="font-bold text-primary-900 flex items-center gap-x-2"
@@ -24,8 +22,9 @@ function productsPage() {
           <HiPlusCircle className="w-6 h-6" /> <span>اضافه کردن محصول</span>
         </Link>
       </div>
-
-      <ProductsTable products={products} />
+      <div className="rounded-xl shadow-sm bg-white/90 border border-secondary-100  overflow-auto">
+        <ProductsTable products={products} />
+      </div>
     </div>
   );
 }

@@ -10,8 +10,6 @@ import React from "react";
 import toast from "react-hot-toast";
 
 function AddToCart({ product }) {
-  console.log(product);
-
   const router = useRouter();
   const { data } = useGetUser();
   const { user } = data || {};
@@ -35,7 +33,7 @@ function AddToCart({ product }) {
         <div
           className={`${
             t.visible ? "animate-enter" : "animate-leave"
-          } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+          } max-w-md w-full bg-white/95 shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
         >
           <div className="flex-1 w-0 p-4">
             <div className="flex items-start">
@@ -70,7 +68,7 @@ function AddToCart({ product }) {
     <div>
       <button
         onClick={addToCardHandler}
-        className={`btn text-sm rounded-md  lg:rounded-lg lg:text-base ${
+        className={`btn text-sm rounded-md w-full lg:rounded-lg lg:text-base ${
           isInCart(user, product) ? "btn--secondary btn" : "btn--primary"
         }`}
       >

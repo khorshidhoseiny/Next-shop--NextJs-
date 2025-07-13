@@ -8,8 +8,8 @@ const { userListTableHeads } = require("@/constants/tableHeads");
 
 function UsersTable({ users }) {
   return (
-    <div className="shadow-sm overflow-auto my-8">
-      <table className="border-collapse  table-auto min-w-[800px] text-sm">
+    <div className="shadow-sm overflow-auto mt-8">
+      <table className="border-collapse w-full table-auto min-w-[800px] text-sm">
         <thead>
           <tr>
             {userListTableHeads.map((item) => {

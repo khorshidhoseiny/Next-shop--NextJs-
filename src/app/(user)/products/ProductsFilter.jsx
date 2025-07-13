@@ -43,7 +43,7 @@ function ProductsFilter({ categories }) {
   return (
     <div className="mb-4">
       <p className="font-bold mb-4">دسته بندی ها</p>
-      <ul className="space-y-4">
+      <ul className="space-y-4 px-2">
         {categories.map((category) => {
           return (
             <CheckBox

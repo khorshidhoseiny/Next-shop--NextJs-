@@ -1,13 +1,16 @@
 "use client";
-import { useMutation } from "@tanstack/react-query";
+import Button from "@/common/Button";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import { useAddNewCategory } from "@/hooks/usecategories";
 import toast from "react-hot-toast";
 import CategoryForm from "@/components/CategoryForm";
+import { RiArrowGoBackLine } from "react-icons/ri";
+import useMoveBack from "@/hooks/useMoveBack";
 
 function page() {
+  const back = useMoveBack();
   const [category, setCategory] = useState({
     title: "",
     description: "",
@@ -35,7 +38,13 @@ function page() {
 
   return (
     <div>
-      <h1 className="mb-6 font-bold text-xl">افزودن دسته بندی جدید</h1>
+      <div className="flex mb-5 justify-between items-center">
+        <h1 className="title">افزودن دسته بندی جدید</h1>
+
+        <Button className={"flex gap-x-3"} onClick={back}>
+          بازگشت <RiArrowGoBackLine className="w-4 h-4 text-white" />
+        </Button>
+      </div>
       <CategoryForm
         selectedType={selectedType}
         setSelectedType={setSelectedType}

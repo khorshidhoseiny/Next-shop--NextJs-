@@ -285,3 +285,45 @@ export const couponListTableTHeads = [
     label: "عملیات",
   },
 ];
+export const couponDetailTableTHeads = [
+  {
+    id: 1,
+    label: "کد",
+  },
+  {
+    id: 2,
+    label: "نوع",
+  },
+  {
+    id: 3,
+    label: "وضعیت ",
+  },
+  {
+    id: 4,
+    label: "مقدار",
+  },
+  {
+    id: 5,
+    label: "تاریخ انقضاء",
+  },
+  {
+    id: 6,
+    label: "شامل محصولات",
+  },
+  {
+    id: 7,
+    label: "مقدار مصرفی",
+  },
+  {
+    id: 8,
+    label: "ظرفیت",
+  },
+  {
+    id: 9,
+    label: "تاریخ ایجاد",
+  },
+  {
+    id: 10,
+    label: "تاریخ بروزرسانی",
+  },
+];

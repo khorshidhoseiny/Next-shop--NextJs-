@@ -7,6 +7,7 @@ import { RiEdit2Line } from "react-icons/ri";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRemoveProduct } from "@/hooks/useProducts";
 import toast from "react-hot-toast";
+import truncateText from "@/utils/trancateText";
 
 function ProductsTable({ products }) {
   const { mutateAsync } = useRemoveProduct();
@@ -23,8 +24,8 @@ function ProductsTable({ products }) {
   };
 
   return (
-    <div className="shadow-sm overflow-auto my-8">
-      <table className="border-collapse table-auto min-w-[800px] text-sm">
+    <div className="shadow-sm overflow-auto mt-8">
+      <table className="border-collapse  table-auto w-full min-w-[800px] text-sm">
         <thead>
           <tr>
             {productListTableTHeads.map((item) => {
@@ -39,12 +40,14 @@ function ProductsTable({ products }) {
             })}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-secondary-100/40">
           {products.map((product, index) => {
             return (
               <tr className="" key={product._id}>
                 <td className="table__td">{index + 1}</td>
-                <td className="table__td font-medium">{product.title}</td>
+                <td className="table__td truncate whitespace-nowrap font-medium">
+                  {truncateText(product.title, 20)}
+                </td>
                 <td className="table__td trancate whitespace-nowrap ">
                   {product.category?.title || ""}
                 </td>

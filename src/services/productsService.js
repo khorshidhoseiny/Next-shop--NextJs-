@@ -1,6 +1,6 @@
 import http from "./httpService";
 
-export function getProducts(qs, cookies) {
+export function getProducts(qs = "", cookies) {
   return http
     .get(`/product/list?${qs}`, {
       headers: {

@@ -39,13 +39,13 @@ function CartPage() {
     );
   return (
     <div className="grid grid-cols-4 gap-6">
-      <div className="col-span-3 space-y-5">
+      <div className="col-span-4 md:col-span-2 lg:col-span-3 space-y-5">
         {cart &&
           cart.productDetail.map((cartItem) => {
             return <CartDetail key={cartItem._id} cartItem={cartItem} />;
           })}
       </div>
-      <div className="col-span-1">
+      <div className="col-span-4 md:col-span-2 lg:col-span-1">
         <CartSummery payDetail={cart.payDetail} />
       </div>
     </div>

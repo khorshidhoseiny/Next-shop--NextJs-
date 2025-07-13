@@ -7,7 +7,7 @@ import { HiEye } from "react-icons/hi";
 
 function PaymentsTabel({ payments }) {
   return (
-    <div className="shadow-sm overflow-auto my-8">
+    <div className="shadow-sm overflow-auto mt-8">
       <table className="border-collapse table-auto min-w-[800px] text-sm">
         <thead>
           <tr>
@@ -20,7 +20,7 @@ function PaymentsTabel({ payments }) {
             })}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-secondary-100/40">
           {payments.map((payment, index) => {
             return (
               <tr key={payment._id}>

@@ -1,25 +1,16 @@
 "use client";
 
-import ConfirmDelete from "@/common/confirmDelete";
-import Modal from "@/common/Modal";
+import Loading from "@/common/Loading";
 import { categoryListTableTHeads } from "@/constants/tableHeads";
 import { useRemoveCategory } from "@/hooks/usecategories";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { HiEye, HiTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 
 function CategoryListTable({ categories }) {
-  const router = useRouter();
-  const [isopen, setIsOpen] = useState(false);
-  const {
-    mutateAsync,
-
-    isPending,
-  } = useRemoveCategory();
+  const { mutateAsync, isPending } = useRemoveCategory();
   const queryClient = useQueryClient();
 
   const removeCategoryHandler = async (id) => {
@@ -33,53 +24,61 @@ function CategoryListTable({ categories }) {
   };
 
   return (
-    <div className="shadow-sm overflow-auto my-8">
-      <table className="border-collapse table-auto w-full min-w-[800px] text-sm">
-        <thead>
-          <tr>
-            {categoryListTableTHeads.map((item) => {
+    <div className="rounded-xl shadow-sm bg-white overflow-auto">
+      <div className="shadow-sm overflow-auto mt-8">
+        <table className="border-collapse table-auto w-full min-w-[800px] text-sm">
+          <thead>
+            <tr>
+              {categoryListTableTHeads.map((item) => {
+                return (
+                  <th className="whitespace-nowrap table__th" key={item.id}>
+                    {item.label}
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody className="bg-secondary-100/40">
+            {categories.map((category, index) => {
               return (
-                <th className="whitespace-nowrap table__th" key={item.id}>
-                  {item.label}
-                </th>
+                <tr key={category._id}>
+                  <td className="table__td">{index + 1}</td>
+                  <td className="table__td  whitespace-nowrap font-bold">
+                    {category.title}
+                  </td>
+                  <td className="table__td">{category.description}</td>
+                  <td className="table__td ">{category.englishTitle}</td>
+                  <td className="table__td">
+                    <span className="badge badge--secondary">
+                      {category.type}
+                    </span>
+                  </td>
+                  <td className="table__td font-bold text-lg">
+                    <div className="flex items-center gap-x-4">
+                      <Link href={`/admin/categories/${category._id}`}>
+                        <HiEye className="text-primary-900 w-6 h-6" />
+                      </Link>
+                      {isPending ? (
+                        <Loading />
+                      ) : (
+                        <button
+                          onClick={() => removeCategoryHandler(category._id)}
+                        >
+                          <HiTrash className="text-rose-600 w-6 h-6" />
+                        </button>
+                      )}
+
+                      <Link href={`/admin/categories/edit/${category._id}`}>
+                        <RiEdit2Line className="w-6 h-6 text-secondary-600" />
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
               );
             })}
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((category, index) => {
-            return (
-              <tr key={category._id}>
-                <td className="table__td">{index + 1}</td>
-                <td className="table__td  whitespace-nowrap font-bold">
-                  {category.title}
-                </td>
-                <td className="table__td">{category.description}</td>
-                <td className="table__td">{category.englishTitle}</td>
-                <td className="table__td">
-                  <span className="badge badge--secondary">
-                    {category.type}
-                  </span>
-                </td>
-                <td className="table__td font-bold text-lg">
-                  <div className="flex items-center gap-x-4">
-                    <Link href={`/admin/categories/${category._id}`}>
-                      <HiEye className="text-primary-900 w-6 h-6" />
-                    </Link>
-                    <button onClick={() => removeCategoryHandler(category._id)}>
-                      <HiTrash className="text-rose-600 w-6 h-6" />
-                    </button>
-
-                    <Link href={`/admin/categories/edit/${category._id}`}>
-                      <RiEdit2Line className="w-6 h-6 text-secondary-600" />
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

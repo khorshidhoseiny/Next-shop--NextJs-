@@ -6,6 +6,7 @@ import { useGetUser } from "@/hooks/useAuth";
 import { updateProfile } from "@/services/AuthServices";
 import { includeObj } from "@/utils/objectUtils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -13,6 +14,7 @@ import toast from "react-hot-toast";
 function MePage() {
   const { data, isLoading } = useGetUser();
   const { user } = data || {};
+  const router = useRouter();
 
   const queryClient = useQueryClient();
   const { mutateAsync, isPending: isUpdating } = useMutation({
@@ -41,15 +43,18 @@ function MePage() {
       const { message } = await mutateAsync(data);
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
       toast.success(message);
+      router.push("/profile");
     } catch (error) {
+      console.log(error);
+
       toast.error(error?.response?.data?.message);
     }
   };
   if (isLoading) return <Loading />;
   return (
     <div>
-      <h1>اطلاعات کاربری</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <h1 className="title mb-5">اطلاعات کاربری</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {Object.keys(includeObj(user, includesKey)).map((key) => {
           return (
             <RHFTextField
@@ -65,7 +70,10 @@ function MePage() {
         {isUpdating ? (
           <Loading />
         ) : (
-          <button type="submit" className="btn btn--primary font-bold w-full">
+          <button
+            type="submit"
+            className="btn btn--primary font-bold mt-4 w-full"
+          >
             تایید
           </button>
         )}

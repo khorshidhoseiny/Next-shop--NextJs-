@@ -3,6 +3,10 @@ import { TagsInput } from "react-tag-input-component";
 import Loading from "@/common/Loading";
 import Select from "react-select";
 import TextField from "@/common/TextField";
+import FileInput from "@/common/FileInput";
+import ButtonIcon from "../ui/ButtonIcon";
+import { FaXmark } from "react-icons/fa6";
+import Image from "next/image";
 
 const productsFormData = [
   {
@@ -45,11 +49,6 @@ const productsFormData = [
     label: "موجودی",
     name: "countInStock",
   },
-  {
-    id: 9,
-    label: "لینک عکس محصول",
-    name: "imageLink",
-  },
 ];
 
 function ProductForm({
@@ -57,6 +56,8 @@ function ProductForm({
   tags,
   setTags,
   productData,
+  imageLink,
+  setImageLink,
   productDataOnChange,
   categories,
   setSelectedCategory,
@@ -96,6 +97,7 @@ function ProductForm({
             defaultValue={selectedCategory}
           />
         </div>
+
         <div>
           {isLoading ? (
             <Loading />

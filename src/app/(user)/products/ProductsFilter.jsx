@@ -25,7 +25,6 @@ function ProductsFilter({ categories }) {
 
   const categoryHandler = (e) => {
     const value = e.target.value;
-
     if (selectedCategories.includes(value)) {
       const categories = selectedCategories.filter((c) => c !== value);
       setSelectedCategories(categories);

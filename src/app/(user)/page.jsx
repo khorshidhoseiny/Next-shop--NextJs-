@@ -14,6 +14,7 @@ import {
   CiCreditCard1,
   CiDeliveryTruck,
 } from "react-icons/ci";
+import HomeBanner from "@/components/HomeBanner";
 
 export default async function Home() {
   const categoryList = [
@@ -85,33 +86,23 @@ export default async function Home() {
     },
   ];
   const { products } = await getProducts();
+  console.log(products);
+
   const discountedProducts = products.filter((p) => !!p.discount);
+  const mobileproducts = products.filter(
+    (p) => p.category.englishTitle === "mobile"
+  );
 
   return (
     <div className="container flex px-2 flex-col space-y-7 max-w-screen-xl">
       {/* banner */}
-      <div className="relative flex items-center gap-x-6 lg:justify-center  px-6 py-10 bg-blue-50 rounded-xl overflow-hidden">
-        <div className="relative flex-1  min-h-[300px] max-h-full rounded-xl overflow-hidden">
-          <Image
-            fill
-            alt="بنر فروشگاه"
-            className="object-center object-contain"
-            priority
-            src="/images/banner.png"
-          />
-        </div>
-        <div className="z-10 space-y-4 flex-1 max-w-md">
-          <h2 className="md:text-3xl text-2xl font-bold text-gray-800">
-            زندگی دیجیتال خود را متحول کنید
-          </h2>
-          <p className="text-gray-600">
-            جدیدترین گوشی‌ها، لپ‌تاپ‌ها و لوازم جانبی همین‌جا منتظر شما هستند.
-          </p>
-          <button className="px-6 py-2 bg-primary-700 text-white rounded-md hover:bg-primary-800 transition">
-            خرید کنید
-          </button>
-        </div>
-      </div>
+      <HomeBanner
+        bannerSrc={"/images/banner.png"}
+        title="زندگی دیجیتال خود را متحول کنید"
+        description={
+          "جدیدترین گوشی‌ها، لپ‌تاپ‌ها و لوازم جانبی همین‌جا منتظر شما هستند."
+        }
+      />
 
       {/* categories */}
       <div className="flex justify-between items-center">
@@ -160,6 +151,20 @@ export default async function Home() {
           ))}
         </div>
       </div>
+      <div className=" rounded-xl py-5 px-3 ">
+        <h1 className="font-bold text-secondary-700 mb-5 text-xl">
+          پرفروش ترین موبایل ها 🤩
+        </h1>
+        <ProductSlider products={mobileproducts} />
+      </div>
+      <HomeBanner
+        bannerSrc={"/images/productsElectronic-banner.png"}
+        title={"خانه‌ای هوشمند با محصولات برقی مدرن"}
+        description={
+          "با جدیدترین لوازم برقی آشپزخانه، نظافت و سرگرمی، زندگی روزمره‌تان را ساده‌تر و لذت‌بخش‌تر کنید"
+        }
+        leftOrder={true}
+      />
     </div>
   );
 }

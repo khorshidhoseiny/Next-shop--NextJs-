@@ -1,57 +1,93 @@
 import { getOneProductBySlug, getProducts } from "@/services/productsService";
-import {
-  toPersianNumbers,
-  toPersianNumbersWithComma,
-} from "@/utils/toPersianNumbers";
+
 import React from "react";
+import { Tag, Star, Layers, Archive } from "lucide-react";
+import ProductGallery from "./_components/ProductGallery";
+import Breadcrumb from "@/common/Breadcrumb";
+import { toPersianNumbers } from "@/utils/toPersianNumbers";
+import ProductPrice from "./_components/ProductPrice";
 import AddToCart from "./AddToCart";
-import Image from "next/image";
 export const dynamicParams = false;
 export const dynamic = "force-static";
 async function page({ params }) {
   const slug = await params.slug;
   const { product } = await getOneProductBySlug(slug);
-  return (
-    <div>
-      <div className="aspect-video shadow-md overflow-hidden rounded-lg relative">
-        <Image
-          alt="imageLink"
-          fill
-          src={`/images/products/${product.slug}.webp`}
-          className="object-center object-contain"
-        />
-      </div>
-      <div className=" p-3 mt-3">
-        <h1 className="font-bold text-2xl text-center mb-6">{product.title}</h1>
-        <p className="mb-6">{product.description}</p>
-        <p className="mb-3">
-          قیمت محصول :{" "}
-          <span
-            className={`${
-              product.discount ? "line-through italic" : "font-bold"
-            }`}
-          >
-            {toPersianNumbersWithComma(product.price)}
-          </span>
-        </p>
-        {!!product.discount && (
-          <div className="flex items-center gap-x-2 mb-6">
-            <p className="text-lg font-bold">
-              قیمت با تخفیف : {toPersianNumbersWithComma(product.offPrice)}
-            </p>
-            <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-sm">
-              {toPersianNumbers(product.discount)} %
-            </div>
-          </div>
-        )}
+  console.log(product);
+  const breadcrumbItems = [
+    { title: "خانه", href: "/" },
+    { title: "فروشگاه", href: "/products" },
+    {
+      title: product.category.title,
+      href: `/categories/${product.category.englishTitle}`,
+    },
+    { title: product.title },
+  ];
 
-        <AddToCart product={product} />
+  return (
+    <div className="p-4 max-w-4xl mx-auto">
+      <Breadcrumb items={breadcrumbItems} />
+      <ProductGallery product={product} />
+      <div className="mt-4 border rounded-xl overflow-hidden bg-white shadow-sm">
+        <h1 className="font-bold text-2xl text-center p-4">{product.title}</h1>
+        <p className="p-4 text-gray-700">{product.description}</p>
+
+        <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200">
+          <div className="flex flex-1 items-center justify-between p-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <Tag size={16} className="text-secondary-400" />
+              <span className="font-medium">برند</span>
+            </div>
+            <span>{product.brand}</span>
+          </div>
+
+          <div className="flex flex-1 gap-x-3 items-center justify-between p-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <Layers size={16} className="text-secondary-400" />
+              <span className="font-medium">دسته‌بندی</span>
+            </div>
+            <span className=" whitespace-nowrap truncate">
+              {product.category.title}
+            </span>
+          </div>
+
+          <div className="flex flex-1 items-center justify-between p-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <Archive size={16} className="text-secondary-400" />
+              <span className="font-medium">موجودی</span>
+            </div>
+            <span>{toPersianNumbers(product.countInStock)}</span>
+          </div>
+
+          <div className="flex flex-1 items-center justify-between p-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <Star size={16} className="text-secondary-400" />
+              <span className="font-medium">امتیاز</span>
+            </div>
+            <span>{toPersianNumbers(product.rating)} / ۵</span>
+          </div>
+        </div>
       </div>
+
+      <ProductPrice product={product} />
+      <div className="flex flex-wrap gap-2 mt-4">
+        {product.tags.map((tag) => (
+          <span
+            key={tag}
+            className="bg-gray-100 mb-3 px-2 py-0.5 rounded-full text-xs text-gray-600"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+      <AddToCart product={product} />
     </div>
   );
 }
-
 export default page;
+
+// <span>موجودی: </span>
+// <span>امتیاز: {toPersianNumbers(product.rating)}</span>
+// <span>تعداد نظرات:{toPersianNumbers(product.numReviews)}</span>
 
 export async function genericStaticParams() {
   const { products } = await getProducts();

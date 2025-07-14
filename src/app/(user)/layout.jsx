@@ -15,13 +15,15 @@ export default function RootLayout({ children }) {
     <html lang="fa" dir="rtl">
       <body
         suppressHydrationWarning={true}
-        className={`${vazirFont.variable}  font-sans`}
+        className={`${vazirFont.variable} flex flex-col min-h-screen  font-sans`}
       >
         <Providers>
           <Toaster />
-
           <Header />
-          <div className="container xl:max-w-screen-xl"> {children} </div>
+          <div className="container flex-1 xl:max-w-screen-xl">
+            {" "}
+            {children}{" "}
+          </div>
           <Footer />
         </Providers>
       </body>

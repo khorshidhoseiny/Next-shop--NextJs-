@@ -12,7 +12,7 @@ function CartPage() {
   if (isLoading) return <Loading />;
   if (!user || !data)
     return (
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col px-3 justify-center items-center">
         <h1 className="font-semibold text-lg">
           برای دیدن محتوای سبد خرید باید ابتدا &nbsp;
           <Link
@@ -38,7 +38,7 @@ function CartPage() {
       </div>
     );
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-4 px-3 gap-6">
       <div className="col-span-4 md:col-span-2 lg:col-span-3 space-y-5">
         {cart &&
           cart.productDetail.map((cartItem) => {

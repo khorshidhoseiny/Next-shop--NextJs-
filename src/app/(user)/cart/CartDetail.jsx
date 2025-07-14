@@ -66,10 +66,10 @@ function cartDetail({ cartItem }) {
           </p>
           {!!cartItem.discount && (
             <div className="flex items-center gap-x-2 mt-2">
-              <p className="font-bold text-green-600">
+              <p className="font-bold text-primary-800">
                 {toPersianNumbersWithComma(cartItem.offPrice)}
               </p>
-              <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-sm">
+              <div className="bg-primary-800 px-2 py-0.5 rounded-xl text-white text-sm">
                 {toPersianNumbers(cartItem.discount)}٪
               </div>
             </div>

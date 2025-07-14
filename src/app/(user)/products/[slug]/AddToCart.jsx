@@ -33,7 +33,7 @@ function AddToCart({ product }) {
         <div
           className={`${
             t.visible ? "animate-enter" : "animate-leave"
-          } max-w-md w-full bg-white/95 shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+          } max-w-md w-full bg-white/95 shadow-lg  rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
         >
           <div className="flex-1 w-0 p-4">
             <div className="flex items-start">
@@ -68,17 +68,15 @@ function AddToCart({ product }) {
     <div>
       <button
         onClick={addToCardHandler}
-        className={`btn text-sm rounded-md w-full lg:rounded-lg lg:text-base ${
+        className={`btn shrink-0  rounded-md w-full lg:rounded-lg lg:text-base ${
           isInCart(user, product) ? "btn--secondary btn" : "btn--primary"
         }`}
       >
         {isPending ? (
           <Loading />
         ) : (
-          <p className="">
-            {isInCart(user, product)
-              ? " به سبد خرید اضافه شد "
-              : "اضافه به سبد خرید"}
+          <p className="text-xs p-1">
+            {isInCart(user, product) ? " به سبد خرید اضافه شد " : " خرید   "}
           </p>
         )}
       </button>

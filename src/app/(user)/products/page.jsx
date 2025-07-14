@@ -11,9 +11,13 @@ export const dynamic = "force-dynamic";
 import { cookies } from "next/headers";
 import { toStrCookies } from "@/utils/toStringCookies";
 import Image from "next/image";
+import ProductPrice from "./[slug]/_components/ProductPrice";
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "@/utils/toPersianNumbers";
 async function ProductsPage(params) {
   const searchParams = await params.searchParams;
-
   // parallel Data fetching
   const cookieStore = cookies();
   const strCookies = toStrCookies(cookieStore);
@@ -37,36 +41,57 @@ async function ProductsPage(params) {
         <div className="col-span-3">
           <ul className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-4">
             {products.map((product) => {
+              console.log(product);
               return (
                 <div
-                  className="space-y-4 border rounded-xl shadow-md p-4"
+                  className="hover:-translate-y-1   hover:shadow-lg transition-transform duration-200 flex flex-col justify-between bg-white h-full space-y-3 border rounded-2xl shadow-md  p-4"
                   key={product._id}
                 >
-                  <div className="aspect-video overflow-hidden rounded-lg relative">
+                  <div className="aspect-video min-h-[270px] bg-primary-100/70 overflow-hidden rounded-2xl relative">
+                    <span
+                      className={`${
+                        !product.discount && "hidden"
+                      } bg-primary-800  left-3 top-3 absolute text-white text-sm px-4 font-bold py-1 rounded-xl`}
+                    >
+                      {toPersianNumbers(product.discount)}%
+                    </span>
                     <Image
                       alt="imageLink"
                       fill
-                      src={`/images/products/${product.slug}.webp`}
-                      className="object-center object-contain"
+                      src={`/images/products/${product.slug}.png`}
+                      className="object-center px-5 pt-2 object-contain"
                     />
                   </div>
-                  <h2 className="font-semibold text-sm gap-4">
-                    {product.title}
-                  </h2>
-                  <div className="mb-4">
-                    <span>تاریخ ساختن: </span>
-                    <span className="font-bold">
-                      {toLocalDateStringShort(product.createdAt)}
-                    </span>
-                  </div>
-                  <Link
-                    className="text-primary-900 font-bold mb-4 block"
-                    href={`/products/${product.slug}`}
-                  >
-                    مشاهده محصول
+                  <Link href={`/products/${product.slug}`}>
+                    <h2 className="font-medium px-2 line-clamp-1 text-base md:text-sm gap-4">
+                      {product.title}
+                    </h2>
                   </Link>
-                  <LikeProducts product={product} />
-                  <AddToCart product={product} key={product._id} />
+                  <div className="mb-4">
+                    <p className="line-clamp-2 text-xs">
+                      {product.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto flex items-center justify-between">
+                    <div className="flex  flex-col gap-x-2 justify-start items-start">
+                      <p
+                        className={`${
+                          product.discount
+                            ? "line-through italic text-xs text-gray-500"
+                            : "hidden"
+                        }`}
+                      >
+                        {toPersianNumbersWithComma(product.price)} تومان
+                      </p>
+                      <div className="flex items-center gap-x-2">
+                        <span className="font-bold text-lg text-primary-800">
+                          {toPersianNumbersWithComma(product.offPrice)} تومان
+                        </span>
+                      </div>
+                    </div>
+                    <AddToCart product={product} key={product._id} />
+                  </div>
                 </div>
               );
             })}
@@ -78,3 +103,19 @@ async function ProductsPage(params) {
 }
 
 export default ProductsPage;
+// {!!product.discount && (
+//   <div className="flex items-center gap-x-2">
+//     <span className="font-bold text-lg text-primary-800">
+//       {toPersianNumbersWithComma(product.offPrice)} تومان
+//     </span>
+//   </div>
+// )}
+// <p
+//   className={`${
+//     product.discount
+//       ? "line-through italic text-xs text-gray-500"
+//       : "font-bold text-xl"
+//   }`}
+// >
+//   {toPersianNumbersWithComma(product.price)} تومان
+// </p>

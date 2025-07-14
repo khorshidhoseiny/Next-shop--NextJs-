@@ -4,7 +4,10 @@ import React from "react";
 import { Tag, Star, Layers, Archive } from "lucide-react";
 import ProductGallery from "./_components/ProductGallery";
 import Breadcrumb from "@/common/Breadcrumb";
-import { toPersianNumbers } from "@/utils/toPersianNumbers";
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "@/utils/toPersianNumbers";
 import ProductPrice from "./_components/ProductPrice";
 import AddToCart from "./AddToCart";
 export const dynamicParams = false;
@@ -27,7 +30,7 @@ async function page({ params }) {
     <div className="p-4 max-w-4xl mx-auto">
       <Breadcrumb items={breadcrumbItems} />
       <ProductGallery product={product} />
-      <div className="mt-4 border rounded-xl overflow-hidden bg-white shadow-sm">
+      <div className="my-4 border  rounded-xl overflow-hidden bg-white shadow-sm">
         <h1 className="font-bold text-2xl text-center p-4">{product.title}</h1>
         <p className="p-4 text-gray-700">{product.description}</p>
 
@@ -68,7 +71,27 @@ async function page({ params }) {
         </div>
       </div>
 
-      <ProductPrice product={product} />
+      <div className=" space-y-2">
+        <p
+          className={`${
+            product.discount
+              ? "line-through italic text-xs text-gray-500"
+              : "font-bold text-xl"
+          }`}
+        >
+          {toPersianNumbersWithComma(product.price)} تومان
+        </p>
+        {!!product.discount && (
+          <div className="flex items-center gap-x-2">
+            <span className="font-bold text-xl text-primary-700">
+              {toPersianNumbersWithComma(product.offPrice)} تومان
+            </span>
+            <span className="bg-primary-700 text-white text-xs px-2 py-0.5 rounded-xl">
+              {toPersianNumbers(product.discount)}%
+            </span>
+          </div>
+        )}
+      </div>
       <div className="flex flex-wrap gap-2 mt-4">
         {product.tags.map((tag) => (
           <span

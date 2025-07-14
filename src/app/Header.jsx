@@ -18,8 +18,8 @@ export default function Header() {
       }`}
     >
       <nav className="container max-w-screen-xl mx-auto flex justify-between items-center p-3">
-        <Link href="/" className="text-primary-800 font-bold text-lg">
-          فروشگاه من
+        <Link href="/" className="text-secondary-700 font-bold text-lg">
+          <span className="text-primary-800">نکست</span> شاپ
         </Link>
 
         <ul className="hidden md:flex gap-6 items-center">

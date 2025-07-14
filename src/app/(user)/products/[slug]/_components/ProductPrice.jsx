@@ -5,15 +5,15 @@ import {
 
 export default function ProductPrice({ product }) {
   return (
-    <div className="mt-4 space-y-2">
+    <div className=" space-y-2">
       <p
         className={`${
           product.discount
-            ? "line-through italic text-gray-500"
+            ? "line-through italic text-xs text-gray-500"
             : "font-bold text-xl"
         }`}
       >
-        قیمت: {toPersianNumbersWithComma(product.price)} تومان
+        {toPersianNumbersWithComma(product.price)} تومان
       </p>
       {!!product.discount && (
         <div className="flex items-center gap-x-2">

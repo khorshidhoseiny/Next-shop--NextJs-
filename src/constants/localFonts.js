@@ -16,6 +16,7 @@ const vazirFont = LocalFont({
       weight: "700",
       style: "normal",
     },
+
     {
       path: "../../public/fonts/vazir/Vazirmatn-ExtraBold.woff2",
       weight: "800",

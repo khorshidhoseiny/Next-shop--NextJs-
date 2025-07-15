@@ -6,6 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import { MdOutlineLogin } from "react-icons/md";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import { GrUserAdmin } from "react-icons/gr";
+import Image from "next/image";
 
 export default function Header() {
   const { data, isLoading } = useGetUser();
@@ -18,8 +19,14 @@ export default function Header() {
       }`}
     >
       <nav className="container max-w-screen-xl mx-auto flex justify-between items-center p-3">
-        <Link href="/" className="text-secondary-700 font-bold text-lg">
-          <span className="text-primary-800">نکست</span> شاپ
+        <Link href="/" className="text-secondary-700">
+          <Image
+            alt={"logo"}
+            src={"/images/logo.png"}
+            width={80}
+            height={80}
+            className=" object-contain "
+          />
         </Link>
 
         <ul className="hidden md:flex gap-6 items-center">

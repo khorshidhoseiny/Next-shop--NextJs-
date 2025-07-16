@@ -70,7 +70,7 @@ function Header({ children }) {
           <Link className="block py-2 relative" href="/cart">
             <PiShoppingCartSimpleBold className="w-6 h-6 text-secondary-800" />
 
-            <span className=" bg-green-500 flex justify-center items-center text-white text-xs absolute top-0 left-4 font-bold  w-4 h-4 rounded-full  ">
+            <span className=" bg-primary-700 flex justify-center items-center text-white text-xs absolute top-0 left-4 font-bold  w-4 h-4 rounded-full  ">
               {cart ? cart.payDetail.orderItems.length : 0}
             </span>
           </Link>

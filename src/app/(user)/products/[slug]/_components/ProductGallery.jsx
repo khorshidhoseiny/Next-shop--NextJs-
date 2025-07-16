@@ -7,7 +7,7 @@ export default function ProductGallery({ product }) {
       <Image
         alt={product.title}
         fill
-        src={`/images/products/${product.slug}.webp`}
+        src={`/images/products/${product.slug}.png`}
         className="object-center object-contain"
       />
     </div>

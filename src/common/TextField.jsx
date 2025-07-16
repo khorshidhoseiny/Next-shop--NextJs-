@@ -1,4 +1,4 @@
-function TextField({ label, name, value, onChange }) {
+function TextField({ label, name, value, onChange, className = "" }) {
   return (
     <div>
       <label htmlFor={name} className="block mb-2">
@@ -6,7 +6,7 @@ function TextField({ label, name, value, onChange }) {
       </label>
       <input
         autoComplete="off"
-        className="textField__input"
+        className={`textField__input ${className}`}
         type="text"
         name={name}
         id={name}

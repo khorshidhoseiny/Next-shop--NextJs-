@@ -21,7 +21,9 @@ function cartDetail({ cartItem }) {
     try {
       const { message } = await mutateAsync(cartItem._id);
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
-      toast.success(message);
+      if (cartItem.quantity === 0) {
+        toast.success(message);
+      }
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);
@@ -32,7 +34,9 @@ function cartDetail({ cartItem }) {
     try {
       const { message } = await mutateDecFromCart(cartItem._id);
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
-      toast.success(message);
+      if (cartItem.quantity === 1) {
+        toast.success(message);
+      }
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }

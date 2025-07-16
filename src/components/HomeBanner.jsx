@@ -1,7 +1,17 @@
 import Image from "next/image";
 import React from "react";
+// import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-function HomeBanner({ bannerSrc, title, description, leftOrder = false }) {
+function HomeBanner({
+  ImgBannerSrc = "/images/productsElectronic-banner.png",
+  title,
+  LinkSrc = "/products",
+  description,
+  leftOrder = false,
+}) {
+  // const router = useRouter();
+
   return (
     <div className="relative flex items-center gap-x-6 lg:justify-center  px-6 py-10 bg-blue-50 rounded-xl overflow-hidden">
       <div
@@ -14,17 +24,17 @@ function HomeBanner({ bannerSrc, title, description, leftOrder = false }) {
           alt="بنر فروشگاه"
           className="object-center object-contain"
           priority
-          src={bannerSrc}
+          src={ImgBannerSrc}
         />
       </div>
       <div className="z-10 space-y-4 flex-1 max-w-md">
         <h2 className="md:text-3xl text-2xl font-bold text-gray-800">
           {title}
         </h2>
-        <p className="text-gray-600">{description}</p>
-        <button className="px-6 py-2 bg-primary-700 text-white rounded-md hover:bg-primary-800 transition">
-          خرید کنید
-        </button>
+        <p className="text-secondrary-600 mb-4">{description}</p>
+        <Link href={LinkSrc}>
+          <button className="btn btn--primary transition">خرید کنید</button>
+        </Link>
       </div>
     </div>
   );

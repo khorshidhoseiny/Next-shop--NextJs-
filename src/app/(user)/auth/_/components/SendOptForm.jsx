@@ -1,5 +1,7 @@
 import Loading from "@/common/Loading";
 import TextField from "@/common/TextField";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function SendOptForm({ onChange, isPending, phoneNumber, onSubmit }) {
@@ -17,8 +19,8 @@ function SendOptForm({ onChange, isPending, phoneNumber, onSubmit }) {
         <TextField
           value={phoneNumber}
           onChange={onChange}
-          label="شماره موبایل"
           name="phoneNumber"
+          className="shadow-md border border-primary-200"
         />
         <div>
           {isPending ? (

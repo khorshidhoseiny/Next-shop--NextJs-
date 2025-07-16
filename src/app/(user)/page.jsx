@@ -1,10 +1,6 @@
 import Link from "next/link";
-import AddToCart from "./products/[slug]/AddToCart";
 import { getProducts } from "@/services/productsService";
-import Image from "next/image";
-import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 import { PiBowlFoodDuotone, PiDressFill } from "react-icons/pi";
-import { SiTicktick } from "react-icons/si";
 import { FaHeadphones, FaMobileAlt, FaPencilAlt } from "react-icons/fa";
 import { MdOutlineLocalLaundryService } from "react-icons/md";
 import ProductSlider from "@/components/ProductSlider";
@@ -86,7 +82,6 @@ export default async function Home() {
     },
   ];
   const { products } = await getProducts();
-  console.log(products);
 
   const discountedProducts = products.filter((p) => !!p.discount);
   const mobileproducts = products.filter(
@@ -95,13 +90,13 @@ export default async function Home() {
 
   return (
     <div className="container flex px-2 flex-col space-y-7 max-w-screen-xl">
-      {/* banner */}
       <HomeBanner
-        bannerSrc={"/images/banner.png"}
+        ImgBannerSrc={"/images/banner.png"}
         title="زندگی دیجیتال خود را متحول کنید"
         description={
           "جدیدترین گوشی‌ها، لپ‌تاپ‌ها و لوازم جانبی همین‌جا منتظر شما هستند."
         }
+        LinkSrc="/products?category=electronic-devices"
       />
 
       {/* categories */}
@@ -112,7 +107,7 @@ export default async function Home() {
               <div className="flex items-center justify-center w-20 h-20 rounded-full bg-blue-100">
                 {item.icon}
               </div>
-              <span className="text-gray-700 text-sm">{item.title}</span>
+              <span className="text-secondary-600 text-sm">{item.title}</span>
             </div>
           );
         })}
@@ -164,6 +159,7 @@ export default async function Home() {
           "با جدیدترین لوازم برقی آشپزخانه، نظافت و سرگرمی، زندگی روزمره‌تان را ساده‌تر و لذت‌بخش‌تر کنید"
         }
         leftOrder={true}
+        LinkSrc={"/products?category=category-home-appliance"}
       />
     </div>
   );

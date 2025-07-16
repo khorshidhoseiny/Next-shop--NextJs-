@@ -18,17 +18,16 @@ function ProductSlider({ products }) {
               className=" bg-white justify-between flex flex-col lg:w-72 p-2 border border-secondary-100 rounded-md shadow-md "
               key={p._id}
             >
-              {" "}
               <Link
                 className="text-primary-900 flex flex-col font-bold mb-4  "
                 href={`/products/${p?.slug}`}
               >
-                <div className=" aspect-square overflow-hidden rounded-lg relative">
+                <div className="aspect-square overflow-hidden rounded-lg relative">
                   <Image
                     alt="imageLink"
                     fill
                     src={
-                      `/images/products/${p?.slug}.webp` || "/images/no-photo"
+                      `/images/products/${p?.slug}.png` || "/images/no-photo"
                     }
                     className="object-center object-contain"
                   />
@@ -38,7 +37,7 @@ function ProductSlider({ products }) {
                   {p.title}
                 </h2>
 
-                <div className=" gap-x-2">
+                <div className="gap-x-2">
                   <p
                     className={` flex items-end w-full  text-sm ${
                       !p.discount && "hidden"
@@ -67,7 +66,7 @@ function ProductSlider({ products }) {
                   </div>
                 </div>
               </Link>
-              <AddToCart product={products} />
+              <AddToCart product={p} />
             </div>
           );
         })}

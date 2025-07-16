@@ -8,7 +8,6 @@ import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
-import ProductPrice from "./_components/ProductPrice";
 import AddToCart from "./AddToCart";
 export const dynamicParams = false;
 export const dynamic = "force-static";

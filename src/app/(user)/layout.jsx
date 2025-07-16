@@ -20,10 +20,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <Toaster />
           <Header />
-          <div className="container flex-1 xl:max-w-screen-xl">
-            {" "}
-            {children}{" "}
-          </div>
+          <div className="container flex-1 xl:max-w-screen-xl">{children}</div>
           <Footer />
         </Providers>
       </body>

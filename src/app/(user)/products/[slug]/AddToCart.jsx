@@ -23,7 +23,6 @@ function AddToCart({ product }) {
         icon: "👩🏻‍💻❗️",
       });
       router.push("/auth");
-
       return;
     }
     try {
@@ -59,6 +58,7 @@ function AddToCart({ product }) {
       toast.error(error?.response?.data?.message);
     }
   };
+
   const isInCart = (user, product) => {
     if (!user) return false;
     return user?.cart?.products.some((p) => p.productId === product._id);

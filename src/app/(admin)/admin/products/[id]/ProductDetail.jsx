@@ -36,7 +36,7 @@ function ProductDetail({ product }) {
           <Image
             alt="imageLink"
             fill
-            src={`/images/products/${product.slug}.webp`}
+            src={`/images/products/${product.slug}.png`}
             className="object-center object-contain"
           />
         </div>

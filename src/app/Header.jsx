@@ -29,7 +29,7 @@ export default function Header() {
           />
         </Link>
 
-        <ul className="hidden md:flex gap-6 items-center">
+        <ul className="flex md:gap-6 gap-3 text-sm items-center">
           <li>
             <NavLink path="/">خانه</NavLink>
           </li>

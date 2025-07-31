@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getProducts } from "@/services/productsService";
 import { PiBowlFoodDuotone, PiDressFill } from "react-icons/pi";
 import { FaHeadphones, FaMobileAlt, FaPencilAlt } from "react-icons/fa";
@@ -82,6 +81,7 @@ export default async function Home() {
     },
   ];
   const { products } = await getProducts();
+
 
   const discountedProducts = products.filter((p) => !!p.discount);
   const mobileproducts = products.filter(

@@ -8,7 +8,6 @@ import Loading from "@/common/Loading";
 function PaymentPage() {
   const { data, isLoading } = useGetUser();
   const { user, payments } = data || {};
-  console.log(user);
 
   if (isLoading) return <Loading />;
   return (

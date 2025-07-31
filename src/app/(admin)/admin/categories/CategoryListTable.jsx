@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { HiEye, HiTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 
-function CategoryListTable({ categories }) {
+function CategoryListTable({ categories=[] }) {
   const { mutateAsync, isPending } = useRemoveCategory();
   const queryClient = useQueryClient();
 
@@ -44,10 +44,10 @@ function CategoryListTable({ categories }) {
                 <tr key={category._id}>
                   <td className="table__td">{index + 1}</td>
                   <td className="table__td  whitespace-nowrap font-bold">
-                    {category.title}
+                    {category?.title}
                   </td>
-                  <td className="table__td">{category.description}</td>
-                  <td className="table__td ">{category.englishTitle}</td>
+                  <td className="table__td">{category?.description}</td>
+                  <td className="table__td ">{category?.englishTitle}</td>
                   <td className="table__td">
                     <span className="badge badge--secondary">
                       {category.type}
@@ -55,20 +55,20 @@ function CategoryListTable({ categories }) {
                   </td>
                   <td className="table__td font-bold text-lg">
                     <div className="flex items-center gap-x-4">
-                      <Link href={`/admin/categories/${category._id}`}>
+                      <Link href={`/admin/categories/${category?._id}`}>
                         <HiEye className="text-primary-900 w-6 h-6" />
                       </Link>
                       {isPending ? (
                         <Loading />
                       ) : (
                         <button
-                          onClick={() => removeCategoryHandler(category._id)}
+                          onClick={() => removeCategoryHandler(category?._id)}
                         >
                           <HiTrash className="text-rose-600 w-6 h-6" />
                         </button>
                       )}
 
-                      <Link href={`/admin/categories/edit/${category._id}`}>
+                      <Link href={`/admin/categories/edit/${category?._id}`}>
                         <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                       </Link>
                     </div>

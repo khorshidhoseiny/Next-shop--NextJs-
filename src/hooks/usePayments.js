@@ -3,8 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useGetPayments() {
   return useQuery({
-    queryKey: ["get-payments"],
+    queryKey: ["payments"],
     queryFn: getAllPayments,
+    retry: false,
   });
 }
 export function useGetPaymentById(id) {

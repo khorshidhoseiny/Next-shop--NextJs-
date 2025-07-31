@@ -28,6 +28,7 @@ function CouponsTable({ coupons }) {
         <thead>
           <tr>
             {couponListTableTHeads.map((item) => {
+              // console.log(item, "couponListTableTHeads");
               return (
                 <th
                   className="whitespace-nowrap text-center font-bold table__th"
@@ -41,6 +42,7 @@ function CouponsTable({ coupons }) {
         </thead>
         <tbody className="bg-secondary-100/30">
           {coupons.map((coupon, index) => {
+            // console.log(coupon, "coupon in map ");
             return (
               <tr className="" key={coupon._id}>
                 <td className="table__td">{index + 1}</td>

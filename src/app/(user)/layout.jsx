@@ -4,7 +4,7 @@ import Header from "../Header";
 import { Toaster } from "react-hot-toast";
 import Providers from "../Providers";
 import Footer from "@/components/Footer";
-
+// export const experimental_ppr = true;
 export const metadata = {
   title: " Next Shop Panel",
   description: "Next.js Course Fronthooks Course",

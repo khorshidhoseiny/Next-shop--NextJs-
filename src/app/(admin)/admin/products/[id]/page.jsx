@@ -14,7 +14,6 @@ function page() {
   const { product } = data || {};
   const back = useMoveBack();
 
-  console.log(id);
   if (isLoading) return <Loading />;
   return (
     <div>

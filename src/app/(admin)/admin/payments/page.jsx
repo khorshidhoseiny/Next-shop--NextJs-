@@ -12,7 +12,6 @@ function PaymentsPage() {
   const back = useMoveBack();
   const { data, isLoading } = useGetPayments();
   const { payments } = data || {};
-  console.log(payments);
 
   if (isLoading) return <Loading />;
   return (

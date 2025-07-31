@@ -9,6 +9,7 @@ import CouponsTable from "./CouponsTable";
 function couponsPage() {
   const { data, isLoading } = useGetAllCoupons();
   const { coupons } = data || {};
+  // console.log(coupons, "coupons in couponsPage (admin)");
 
   if (isLoading) return <Loading />;
 

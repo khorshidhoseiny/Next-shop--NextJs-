@@ -1,4 +1,4 @@
-import InfoRow from "@/common/infoRow";
+import InfoRow from "@/common/InfoRow";
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 import Image from "next/image";

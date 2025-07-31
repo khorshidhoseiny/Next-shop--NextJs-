@@ -3,21 +3,19 @@ import { getProducts } from "@/services/productsService";
 import React from "react";
 import CategorySideBar from "./CategorySideBar";
 import queryString from "query-string";
-import { toLocalDateStringShort } from "@/utils/toLocalDate";
+
 import Link from "next/link";
 import AddToCart from "./[slug]/AddToCart";
-import LikeProducts from "./LikeProducts";
 export const dynamic = "force-dynamic";
 import { cookies } from "next/headers";
 import { toStrCookies } from "@/utils/toStringCookies";
 import Image from "next/image";
-import ProductPrice from "./[slug]/_components/ProductPrice";
+
 import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
-async function ProductsPage(params) {
-  const searchParams = await params.searchParams;
+async function ProductsPage({ searchParams }) {
   // parallel Data fetching
   const cookieStore = cookies();
   const strCookies = toStrCookies(cookieStore);
@@ -26,7 +24,7 @@ async function ProductsPage(params) {
     queryString.stringify(searchParams),
     strCookies
   );
-  const categoryPromise = getAllCategories();
+  const categoryPromise = await getAllCategories();
   const [{ products }, { categories }] = await Promise.all([
     productsPromise,
     categoryPromise,
@@ -35,13 +33,11 @@ async function ProductsPage(params) {
   return (
     <div>
       <h1 className="text-xl font-bold mb-6">صفحه محصولات</h1>
-
       <div className="grid grid-cols-4 ">
         <CategorySideBar categories={categories} />
         <div className="col-span-3">
           <ul className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-4">
             {products.map((product) => {
-              console.log(product);
               return (
                 <div
                   className="hover:-translate-y-1   hover:shadow-lg transition-transform duration-200 flex flex-col justify-between bg-white h-full space-y-3 border rounded-2xl shadow-md  p-4"
@@ -103,19 +99,3 @@ async function ProductsPage(params) {
 }
 
 export default ProductsPage;
-// {!!product.discount && (
-//   <div className="flex items-center gap-x-2">
-//     <span className="font-bold text-lg text-primary-800">
-//       {toPersianNumbersWithComma(product.offPrice)} تومان
-//     </span>
-//   </div>
-// )}
-// <p
-//   className={`${
-//     product.discount
-//       ? "line-through italic text-xs text-gray-500"
-//       : "font-bold text-xl"
-//   }`}
-// >
-//   {toPersianNumbersWithComma(product.price)} تومان
-// </p>

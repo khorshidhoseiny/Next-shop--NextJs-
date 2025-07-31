@@ -46,7 +46,6 @@ function page() {
     if (coupon) {
       setType(coupon.type);
       setProductIds(coupon.productIds);
-      console.log(productIds);
       setFormData({
         code: coupon.code,
         amount: coupon.amount,

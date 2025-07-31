@@ -5,6 +5,7 @@ import "../../globals.css";
 import Header from "@/pages/HeaderDashboard";
 import AdminSideBar from "./AdminSideBar";
 import SideBar from "@/pages/(profile)/profile/_/SideBar";
+
 export const metadata = {
   title: "پروفایل ادمین",
   description: "پنل مختص ادمین برای رصد بهتر برنامه",

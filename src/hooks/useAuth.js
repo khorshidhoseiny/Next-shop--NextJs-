@@ -5,8 +5,8 @@ export function useGetUser() {
   return useQuery({
     queryKey: ["get-user"],
     queryFn: getUserProfile,
-    refetchOnWindowFocus: true,
     retry: false,
+    refetchOnWindowFocus: true,
   });
 }
 export function useGetUsers() {

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import middlewareAuth from "./utils/middlewareAuth";
-import toast, { Toaster } from "react-hot-toast";
 
 export async function middleware(req) {
   const url = req.url;
@@ -14,7 +13,7 @@ export async function middleware(req) {
     const user = await middlewareAuth(req);
     if (!user) return NextResponse.redirect(new URL("/auth", url));
     if (user && user.role !== "ADMIN") {
-      return NextResponse.redirect(new URL("/", url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
 }

@@ -1,4 +1,3 @@
-import InfoRow from "@/common/infoRow";
 import { toLocalDateString, toLocalDateStringShort } from "@/utils/toLocalDate";
 import {
   toPersianNumbers,
@@ -7,10 +6,9 @@ import {
 import Image from "next/image";
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import { HiTicket } from "react-icons/hi";
+
 import { RiCoreosFill } from "react-icons/ri";
-import TimePicker from "react-multi-date-picker/plugins/time_picker";
-import ProductDetail from "../../products/[id]/ProductDetail";
+
 import {
   adminPaymentDetail_Cart_Heads,
   adminPaymentDetail_User_Heads,

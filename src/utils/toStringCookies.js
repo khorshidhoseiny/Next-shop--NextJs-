@@ -1,6 +1,6 @@
-export function toStrCookies(cookies) {
+export  function toStrCookies(cookies) {
   let strCookies = "";
-  cookies.getAll().forEach((item) => {
+   cookies.getAll().forEach((item) => {
     strCookies += `${item?.name}=${item?.value}; `;
   });
   return strCookies;

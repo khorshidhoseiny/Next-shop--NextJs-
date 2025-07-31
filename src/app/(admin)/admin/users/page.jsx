@@ -1,16 +1,15 @@
 "use client";
-import Loading from "@/common/Loading";
 import { useGetUsers } from "@/hooks/useAuth";
-import React from "react";
-import UsersTable from "./usersTable";
 import useMoveBack from "@/hooks/useMoveBack";
-import Button from "@/common/Button";
 import { RiArrowGoBackLine } from "react-icons/ri";
+import Loading from "@/common/Loading";
+import UsersTable from "./usersTable";
+import Button from "@/common/Button";
 
-function usersPage() {
+function UsersPage() {
   const back = useMoveBack();
   const { data, isLoading } = useGetUsers();
-  const { users } = data || {};
+  const { users = [] } = data || {};
   if (isLoading) return <Loading />;
 
   return (
@@ -22,10 +21,10 @@ function usersPage() {
         </Button>
       </div>
       <div className="rounded-xl shadow-sm bg-white/90 border border-secondary-100  overflow-auto">
-        <UsersTable users={users} />
+        <UsersTable users={users} isLoading={isLoading} />
       </div>
     </div>
   );
 }
 
-export default usersPage;
+export default UsersPage;

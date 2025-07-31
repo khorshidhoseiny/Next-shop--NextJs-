@@ -13,14 +13,14 @@ import Loading from "@/common/Loading";
 import { MdArrowBack } from "react-icons/md";
 function Profile() {
   const { data, isLoading } = useGetUser();
-  const { user, payments } = data || {};
+  const { user = [], payments = [] } = data || {};
 
   if (isLoading) return <Loading />;
 
   return (
     <div className="space-y-5">
       <div className="bg-white font-light text-secondary-800 lg:px-8 py-4 px-6 max-w-xl rounded-xl">
-        <span className="title">{user.name} 😍&nbsp;</span>
+        <span className="title">{user?.name || ""} 😍&nbsp;</span>
         به فروشگاه نکست خوش آمدی👋🏻
       </div>
 
@@ -63,7 +63,7 @@ function Profile() {
         <div className="rounded-xl bg-white/95 relative overflow-auto">
           <PaymentTabel
             payments={payments
-              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .slice(0, 3)}
           />
         </div>

@@ -13,7 +13,6 @@ function CategoryDetail() {
   const { id } = useParams();
   const { data, isLoading } = useGetCategoryById(id);
   const { category } = data || {};
-  console.log(category);
 
   if (isLoading) return <Loading />;
   return (

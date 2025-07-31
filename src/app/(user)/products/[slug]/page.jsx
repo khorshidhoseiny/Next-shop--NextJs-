@@ -1,5 +1,4 @@
 import { getOneProductBySlug, getProducts } from "@/services/productsService";
-
 import React from "react";
 import { Tag, Star, Layers, Archive } from "lucide-react";
 import ProductGallery from "./_components/ProductGallery";
@@ -9,18 +8,21 @@ import {
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
 import AddToCart from "./AddToCart";
+import { cookies } from "next/headers";
+import { toStrCookies } from "@/utils/toStringCookies";
+
 export const dynamicParams = false;
 export const dynamic = "force-static";
+
 async function page({ params }) {
-  const slug = await params.slug;
+  const { slug } = params;
   const { product } = await getOneProductBySlug(slug);
-  console.log(product);
   const breadcrumbItems = [
     { title: "خانه", href: "/" },
     { title: "فروشگاه", href: "/products" },
     {
       title: product.category.title,
-      href: `/categories/${product.category.englishTitle}`,
+      href: `/products?categories/${product.category.englishTitle}`,
     },
     { title: product.title },
   ];
@@ -107,13 +109,7 @@ async function page({ params }) {
 }
 export default page;
 
-// <span>موجودی: </span>
-// <span>امتیاز: {toPersianNumbers(product.rating)}</span>
-// <span>تعداد نظرات:{toPersianNumbers(product.numReviews)}</span>
-
-export async function genericStaticParams() {
+export async function generateStaticParams() {
   const { products } = await getProducts();
-  return products.map((product) => {
-    slug: product.slug;
-  });
+  return products.map((product) => ({ slug: product.slug }));
 }

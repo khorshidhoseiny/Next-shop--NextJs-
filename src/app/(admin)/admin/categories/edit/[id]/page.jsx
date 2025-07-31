@@ -48,7 +48,7 @@ function page() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
+
   };
 
   if (isLoadingCategory) return <Loading />;

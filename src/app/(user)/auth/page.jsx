@@ -73,7 +73,6 @@ function AuthPage() {
           <SendOptForm
             onChange={(e) => {
               setPhoneNumber(e.target.value);
-              console.log(phoneNumber);
             }}
             phoneNumber={phoneNumber}
             onSubmit={sendOtpHandler}

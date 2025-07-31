@@ -8,7 +8,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-function page() {
+function Page() {
   const router = useRouter();
   const {
     handleSubmit,
@@ -22,7 +22,7 @@ function page() {
     });
 
   const onSubmit = async (data) => {
-    console.log(data);
+
     try {
       const { message } = await mutateCompleteProfile(data);
       router.push("/");
@@ -73,4 +73,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

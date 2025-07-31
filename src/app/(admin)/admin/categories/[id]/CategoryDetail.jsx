@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 
 function CategoryCartDetail({ category }) {
+  // console.log(category, "category in CategoryCartDetail (admin)_");
   return (
     <div className="p-3 flex overflow-x-scroll bg-white rounded-xl mt-4 shadow-md border border-secondary-50 gap-y-3  justify-center flex-col">
       <div className="flex p-4  justify-between rounded-xl">

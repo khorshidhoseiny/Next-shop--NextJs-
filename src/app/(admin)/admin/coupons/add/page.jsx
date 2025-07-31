@@ -9,12 +9,13 @@ import { useRouter } from "next/navigation";
 import CouponsForm from "../CouponsForm";
 import Button from "@/common/Button";
 import { RiArrowGoBackLine } from "react-icons/ri";
+import useMoveBack from "@/hooks/useMoveBack";
 
 function addCopounPage() {
   const back = useMoveBack();
   const { data, isLoading } = useGetProducts();
   const { products } = data || {};
-  console.log(products, "products");
+
   const [formData, setFormData] = useState({
     code: "",
     amount: "",

@@ -37,7 +37,9 @@ function AdminPage() {
   return (
     <div className="space-y-5">
       <div className="bg-white font-light text-secondary-800 lg:px-8 py-4 px-6 max-w-xl rounded-xl">
-        <span className="font-black text-2xl">{user?.name} 🤩&nbsp;</span>
+        <span className="font-black text-lg md:text-2xl">
+          {user?.name} 🤩&nbsp;
+        </span>
         به پنل مدیریت فروشگاه خوش آمدی🌻
       </div>
       <div className="flex flex-col mt-5 ">
@@ -92,9 +94,15 @@ function AdminPage() {
           </div>
           <div className="rounded-xl border border-secondary-100 bg-white/90  overflow-auto">
             <PaymentsTabel
-              payments={payments
-                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                .slice(0, 3)}
+              payments={
+                payments
+                  ? payments
+                      .sort(
+                        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                      )
+                      .slice(0, 3)
+                  : []
+              }
             />
           </div>
         </div>

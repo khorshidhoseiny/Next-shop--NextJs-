@@ -13,11 +13,11 @@ function HomeBanner({
   // const router = useRouter();
 
   return (
-    <div className="relative flex items-center gap-x-6 lg:justify-center  px-6 py-10 bg-blue-50 rounded-xl overflow-hidden">
+    <div className="relative flex flex-col md:flex-row items-center gap-x-6 lg:justify-center px-6 py-10 bg-blue-50 rounded-xl overflow-hidden">
       <div
         className={`relative ${
           leftOrder && "order-2"
-        } flex-1  min-h-[300px] max-h-full rounded-xl overflow-hidden`}
+        } min-h-[300px] flex-1 max-h-full rounded-xl w-full overflow-hidden`}
       >
         <Image
           fill
@@ -33,7 +33,9 @@ function HomeBanner({
         </h2>
         <p className="text-secondrary-600 mb-4">{description}</p>
         <Link href={LinkSrc}>
-          <button className="btn btn--primary transition">خرید کنید</button>
+          <button className="btn mt-5 btn--primary transition">
+            خرید کنید
+          </button>
         </Link>
       </div>
     </div>

@@ -59,8 +59,8 @@ function Header({ children }) {
             <HiMiniBars3BottomRight className="w-5 h-5" />
           )}
         </ButtonIcon>
-        <h1 className="font-bold text-secondary-600">
-          سلام {user?.name}{" "}
+        <h1 className="font-bold sm:text-md text-sm text-secondary-600">
+          سلام <span className="block sm:inline  ">{user?.name}</span>
           <span className="text-secondary-300 font-black">&nbsp;|&nbsp;</span>
           {Greetings()}
         </h1>

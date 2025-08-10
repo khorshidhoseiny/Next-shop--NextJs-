@@ -19,17 +19,17 @@ export default function Header() {
       }`}
     >
       <nav className="container max-w-screen-xl mx-auto flex justify-between items-center p-3">
-        <Link href="/" className="text-secondary-700">
+        <Link href="/" className="text-secondary-700 md:block hidden">
           <Image
             alt={"logo"}
             src={"/images/logo.png"}
             width={80}
             height={80}
-            className=" object-contain "
+            className="object-contain "
           />
         </Link>
 
-        <ul className="flex md:gap-6 gap-3 text-sm items-center">
+        <ul className="flex md:gap-6  gap-3 text-sm items-center">
           <li>
             <NavLink path="/">خانه</NavLink>
           </li>
@@ -39,10 +39,12 @@ export default function Header() {
           <li>
             <Link
               href="/admin"
-              className="flex items-center gap-1 hover:text-primary-700 transition"
+              className="flex flex-col md:flex-row items-center gap-1 hover:text-primary-700 transition"
             >
-              <span className="text-xs font-semibold">پنل ادمین</span>
               <GrUserAdmin className="w-5 h-5" />
+              <span className="text-xs hidden md:block font-medium">
+                پنل ادمین
+              </span>
             </Link>
           </li>
         </ul>
@@ -51,10 +53,10 @@ export default function Header() {
           {user ? (
             <Link
               href="/profile"
-              className="flex items-center gap-1 hover:text-primary-700 transition"
+              className="flex flex-col md:flex-row items-center gap-1 hover:text-primary-700 transition"
             >
-              <span className="text-xs font-semibold">پروفایل</span>
               <FaRegUser className="w-5 h-5" />
+              <span className="text-xs hidden md:block font-base">پروفایل</span>
             </Link>
           ) : (
             <Link

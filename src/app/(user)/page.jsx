@@ -82,7 +82,6 @@ export default async function Home() {
   ];
   const { products } = await getProducts();
 
-
   const discountedProducts = products.filter((p) => !!p.discount);
   const mobileproducts = products.filter(
     (p) => p.category.englishTitle === "mobile"
@@ -98,13 +97,12 @@ export default async function Home() {
         }
         LinkSrc="/products?category=electronic-devices"
       />
-
       {/* categories */}
-      <div className="flex justify-between items-center">
+      <div className="grid  grid-cols-2 gap-y-5 md:grid-cols-3">
         {categoryList.map((item) => {
           return (
             <div key={item.id} className="category-item">
-              <div className="flex items-center justify-center w-20 h-20 rounded-full bg-blue-100">
+              <div className="flex items-center justify-center w-20 h-20 rounded-full bg-blue-50">
                 {item.icon}
               </div>
               <span className="text-secondary-600 text-sm">{item.title}</span>
@@ -113,7 +111,7 @@ export default async function Home() {
         })}
       </div>
 
-      <div className="  rounded-xl py-5 px-3 ">
+      <div className="rounded-xl py-5 px-3 ">
         <h1 className="font-bold text-secondary-700 mb-5 text-xl">
           محصولات ویژه✨
           <span className="text-sm block font-medium mt-3">

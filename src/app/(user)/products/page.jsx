@@ -17,11 +17,11 @@ import {
 } from "@/utils/toPersianNumbers";
 async function ProductsPage({ searchParams }) {
   // parallel Data fetching
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const strCookies = toStrCookies(cookieStore);
-
+  const SearchParams = await searchParams;
   const productsPromise = getProducts(
-    queryString.stringify(searchParams),
+    queryString.stringify(SearchParams),
     strCookies
   );
   const categoryPromise = await getAllCategories();
@@ -31,7 +31,7 @@ async function ProductsPage({ searchParams }) {
   ]);
 
   return (
-    <div className=" px-5">
+    <div className="px-5">
       <h1 className="text-xl font-bold mb-6">صفحه محصولات</h1>
       <div className="grid justify-evenly grid-cols-4 ">
         <CategorySideBar categories={categories} />

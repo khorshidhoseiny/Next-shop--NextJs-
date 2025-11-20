@@ -8,8 +8,6 @@ import {
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
 import AddToCart from "./AddToCart";
-import { cookies } from "next/headers";
-import { toStrCookies } from "@/utils/toStringCookies";
 
 export const dynamicParams = false;
 export const dynamic = "force-static";
